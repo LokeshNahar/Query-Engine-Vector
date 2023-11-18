@@ -3,7 +3,7 @@
 **Qdrant + LLM + FastAPI + Streamlit**
 
 
-![Problem-Statement]("Assignment.png")
+![Problem-Statement]("/Assignment.png")
 
 
 Dataset used is [Big-Basket-Products-Dataset](https://chaabiv2.s3.ap-south-1.amazonaws.com/hiring/bigBasketProducts.csv)
