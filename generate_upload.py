@@ -91,7 +91,7 @@ class QdrantUploader:
 
         # Handle missing values in the DataFrame
         df = preprocessor.df
-        df.fillna({"ratings" : 0},inplace=True)
+        df.fillna({"rating" : 0},inplace=True)
         df.fillna("NA", inplace=True)
         payload = df.to_dict('records')
 
