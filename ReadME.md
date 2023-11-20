@@ -62,7 +62,7 @@ to start the frontend web app run the following command:
 ```
 streamlit run frontend.py
 ```
-![gif](Data/streamlit-frontend-2023-11-20-21-11-97.webm)
+![gif](Data/streamlit-preview.gif)
 
 Simply type in the query in the text box and the search results.
 
