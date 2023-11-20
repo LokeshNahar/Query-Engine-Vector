@@ -46,8 +46,9 @@ to Preprocess, Generate, and Upload the vector embeddings to the qdrant Database
 ```
 #to generate the embeddings and then upload (make sure your OS has torch.cuda)
 python3 generate_upload.py --generate_embeddings
+```
 
-
+```
 #if the embeddings are already saved in npy file,
 python3 generate_upload.py
 ```
@@ -60,7 +61,7 @@ uvicorn service:app --reload
 ```
 
 
-to start the frontend web app run the following command:
+Finally start the frontend web app run the following command:
 ```
 streamlit run frontend.py
 ```
