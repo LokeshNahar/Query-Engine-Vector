@@ -27,7 +27,7 @@ First, download the latest Qdrant image from Dockerhub:
 docker pull qdrant/qdrant
 ```
 
-Then, run the service:
+Then, run the service (make sure port 6333 is available):
 
 ```
 docker run -p 6333:6333 \
@@ -40,7 +40,15 @@ Under the default configuration all data will be stored in the ./qdrant_storage 
 Qdrant is now accessible:\
 API: localhost:6333
 
+to Preprocess, Generate and Upload the vector embeddings to the qdrant Database simply by running the following command:
+```
+#to generate the embeddings and then upload (make sure your OS has torch.cuda)
+python3 generate_upload.py --generate_embeddings
 
+
+#if the embeddings are already saved in npy file,
+python3 generate_upload.py
+```
 
 
 Inorder to start the Fast API service, run the service.py file using the below command in a seperate terminal:
@@ -54,8 +62,9 @@ to start the frontend web app run the following command:
 ```
 streamlit run frontend.py
 ```
-![gif]('streamlit-frontend-2023-11-19-02-11-66.webm')
+![gif](streamlit-preview.gif)
 
 Simply type in the query in the text box and and the search results.
 
 ***Special Thanks to Chaabi for giving the assignment and the Problem Statement***
+![Problem-Statement](Assignment.png)
