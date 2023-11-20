@@ -1,5 +1,7 @@
 # Query Engine
 
+![gif](Data/streamlit-preview.gif)
+
 **Qdrant + LLM + FastAPI + Streamlit**
 
 
@@ -62,7 +64,7 @@ to start the frontend web app run the following command:
 ```
 streamlit run frontend.py
 ```
-![gif](Data/streamlit-preview.gif)
+
 
 Simply type in the query in the text box and the search results.
 
