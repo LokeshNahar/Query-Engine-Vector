@@ -15,11 +15,11 @@ pip3 install -r requirements.txt
 ```
 The dependencies are:
 * [Docker](https://docs.docker.com/get-docker/)
+* Sentence-Transformers (all-MiniLM-L6-v2) [Among the pre-trained models](https://www.sbert.net/docs/pretrained_models.html)
 * [Qdrant-Vector-DataBase](https://qdrant.tech/)
 * [FastAPI](https://fastapi.tiangolo.com/)
 * [Streamlit](https://streamlit.io/)
-* Sentence-Transformers (all-MiniLM-L6-v2)
-* Pandas
+* Pandas, Numpy, Requests
 
 
 # #Start
