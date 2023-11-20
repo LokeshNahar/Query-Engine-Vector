@@ -35,12 +35,12 @@ docker run -p 6333:6333 \
     qdrant/qdrant
 ```
 
-Under the default configuration all data will be stored in the ./qdrant_storage directory.
+Under the default configuration, all data will be stored in the ./qdrant_storage directory.
 
 Qdrant is now accessible:\
 API: localhost:6333
 
-to Preprocess, Generate and Upload the vector embeddings to the qdrant Database simply by running the following command:
+to Preprocess, Generate, and Upload the vector embeddings to the qdrant Database simply by running the following command:
 ```
 #to generate the embeddings and then upload (make sure your OS has torch.cuda)
 python3 generate_upload.py --generate_embeddings
@@ -51,7 +51,7 @@ python3 generate_upload.py
 ```
 
 
-Inorder to start the Fast API service, run the service.py file using the below command in a seperate terminal:
+In order to start the Fast API service, run the service.py file using the below command in a seperate terminal:
 
 ```
 uvicorn service:app --reload  
@@ -64,7 +64,9 @@ streamlit run frontend.py
 ```
 ![gif](streamlit-preview.gif)
 
-Simply type in the query in the text box and and the search results.
+Simply type in the query in the text box and the search results.
 
-***Special Thanks to Chaabi for giving the assignment and the Problem Statement***
-![Problem-Statement](Assignment.png)
+Here are some other Search results:
+
+***Special Thanks to Chaabi for giving the Problem Statement***
+![Problem-Statement](Data/Assignment.png)
