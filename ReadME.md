@@ -42,7 +42,7 @@ Under the default configuration, all data will be stored in the ./qdrant_storage
 Qdrant is now accessible:\
 API: localhost:6333
 
-to Preprocess, Generate, and Upload the vector embeddings to the qdrant Database simply by running the following command:
+to Preprocess, Generate, and Upload the vector embeddings to the qdrant Database simply by running the following command (confirm Data Path in config.py file):
 ```
 #to generate the embeddings and then upload (make sure your OS has torch.cuda)
 python3 generate_upload.py --generate_embeddings
