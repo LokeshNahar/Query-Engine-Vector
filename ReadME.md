@@ -67,6 +67,7 @@ streamlit run frontend.py
 Simply type in the query in the text box and the search results.
 
 Here are some other Search results:
-
+![glucose](Data/glucose.png)
+![tooth](tooth_brush.png)
 ***Special Thanks to Chaabi for giving the Problem Statement***
 ![Problem-Statement](Data/Assignment.png)
