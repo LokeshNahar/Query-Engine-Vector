@@ -39,12 +39,12 @@ docker run -p 6333:6333 \
 
 Under the default configuration, all data will be stored in the ./qdrant_storage directory.
 
-Qdrant is now accessible:\
+Qdrant is now accessible:
 API: localhost:6333
 
 to Preprocess, Generate, and Upload the vector embeddings to the qdrant Database simply by running the following command (confirm Data Path in config.py file):
 ```
-#to generate the embeddings and then upload (make sure your OS has torch.cuda)
+#to generate the embeddings and then upload (make sure your system has torch.cuda)
 python3 generate_upload.py --generate_embeddings
 ```
 
@@ -61,13 +61,12 @@ uvicorn service:app --reload
 ```
 
 
-Finally start the frontend web app run the following command:
+Finally start the frontend web app ; run the following command:
 ```
 streamlit run frontend.py
 ```
 
-
-Simply type in the query in the text box and the search results.
+Simply type in the query in the text box and press the search button.
 
 Here are some other Search results:
 ![glucose](Data/glucose.png)
