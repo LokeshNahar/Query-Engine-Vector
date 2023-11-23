@@ -23,52 +23,67 @@ Dependencies:
 
 
 # #Start
-1. Download the latest Qdrant image from Dockerhub:
+## 1. Start the Qdrant service
+ 1.1 Download the latest Qdrant image from Dockerhub:
 
 ```
 docker pull qdrant/qdrant
 ```
 
-2. Run the qdrant service (make sure port 6333 is available):
+
+ 1.2 Run the qdrant service (make sure port 6333 is available):
 
 ```
 docker run -p 6333:6333 \
     -v $(pwd)/qdrant_storage:/qdrant/storage:z \
     qdrant/qdrant
 ```
+->Under the default configuration, all data will be stored in the ./qdrant_storage directory.
 
-Under the default configuration, all data will be stored in the ./qdrant_storage directory.
+->Qdrant is now accessible: 
+  API: localhost:6333
 
-Qdrant is now accessible:
-API: localhost:6333
 
-3. To Preprocess, Generate, and Upload the vector embeddings to the qdrant Database simply by running the following command (confirm Data Path in config.py file):
+## 2. Preprocess data, Generate the vector Embeddings and upload them to the Qdrant Database
+2.1 Run the following command (confirm Data Path in config.py file):
 ```
-#to generate the embeddings and then upload (make sure your system has torch.cuda)
+#to generate the embeddings from the given dataset and then upload (make sure your system has torch.cuda)
 python3 generate_upload.py --generate_embeddings
 ```
 Note: The Embeddings are being generated using "all-MiniLM-L6-v2" model, however, if your machine's GPU resources permits, you may also use "bert-base-uncased" model to generate the embeddings and store them in the .npy file.
+
+
+2.2 if the embeddings are already saved (bb_chaabi_vectors.npy) in a npy file, just upload them to the qdrant database
 ```
-#if the embeddings are already saved (bb_chaabi_vectors.npy) in a npy file,
 python3 generate_upload.py
 ```
+-> This will upload the vector embeddings and payload (additional information along with vectors to display search results) in the qdrant database.
 
 
-4. In order to start the Fast API service, run the service.py file using the below command in a separate terminal:
+## 3. Load the API service
+In order to start the Fast API service, run the service.py file using the below command in a separate terminal:
 ```
 uvicorn service:app --reload  
 ```
+-> You may now navigate to [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to access fastAPI interactive API documentation to search in a query
 
 
-5. Finally, start the frontend web app; run the following command:
+## 4. Start the Frontend application.
+Finally, start our interactive frontend web app; run the following command in a split terminal:
 ```
 streamlit run frontend.py
 ```
-Simply type in the query in the text box and press the search button.
+**Simply type in the query in the text box and press the search button.**
 
-Here are some other Search results:
-![glucose](Data/glucose.png)
 
-![tooth](Data/tooth_brush.png)
+Here are some Search results:
+* .
+ ![glucose](Data/glucose.png)
+
+* .
+ ![tooth](Data/tooth_brush.png)
 ***Special Thanks to Chaabi for giving the Problem Statement***
 ![Problem-Statement](Data/Assignment.png)
+
+
+***In the symphony of growth, knowledge is the key, and experience the gentle notes that compose our unique melody.***
