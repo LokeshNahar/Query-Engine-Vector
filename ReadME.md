@@ -44,6 +44,10 @@ docker run -p 6333:6333 \
 ->Qdrant is now accessible: 
   API: localhost:6333
 
+**for the next steps make sure your current directory is 'src' or navigate to it with the following command:**
+```
+cd src
+```
 
 ## 2. Preprocess data, Generate the vector Embeddings and upload them to the Qdrant Database
 
