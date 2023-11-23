@@ -55,7 +55,7 @@ Note: The Embeddings are being generated using the "all-MiniLM-L6-v2" model, how
 
 2.2 if the embeddings are already saved (bb_chaabi_vectors.npy) in a npy file, just upload them to the qdrant database
 ```
-python3 generate_upload.py
+python3 uploader.py
 ```
 -> This will upload the vector embeddings and payload (additional information along with vectors to display search results) in the qdrant database.
 
@@ -71,7 +71,7 @@ uvicorn service:app --reload
 ## 4. Start the Frontend application.
 Finally, start our interactive frontend web app; run the following command in a split terminal:
 ```
-streamlit run frontend.py
+streamlit run app.py
 ```
 **Simply type in the query in the text box and press the search button.**
 
