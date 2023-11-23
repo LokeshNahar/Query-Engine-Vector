@@ -2,6 +2,9 @@
 import numpy as np
 import pandas as pd
 import argparse
+import tensorflow as tf
+from transformers import BertTokenizer, TFBertModel
+from tqdm import tqdm
 from sentence_transformers import SentenceTransformer
 import os,re
 import nltk,ssl
@@ -68,9 +71,51 @@ class QdrantUploader:
         self.csv_file_path = csv_file_path
         self.npy_file_path = npy_file_path
 
+    def generate_bert_embeddings(self):
+        preprocessor = DataFramePreprocessor(self.csv_file_path)
+        preprocessor.preprocess_dataframe()
+        # Concatenate multiple columns into a single string for each row
+        preprocessor.df['combined_text'] = preprocessor.df.apply(lambda row: f"{row.product} {row.category} {row.sub_category} {row.type} {row.brand} {row.description}", axis=1)
+
+        # Tokenizer and model initialization
+        tokenizer = BertTokenizer.from_pretrained('bert-base-cased')
+        model = TFBertModel.from_pretrained("bert-base-cased")
+
+        # Tokenize and pad the sequences
+        max_length = 128  # You can adjust this based on your requirements
+        tokenized_inputs = tokenizer(
+            list(preprocessor.df['combined_text']),
+            max_length=max_length,
+            padding='max_length',
+            truncation=True,
+            return_tensors='tf'
+        )
+        # Generate embeddings
+        batch_size = 32  # You can adjust this based on your GPU memory
+        embeddings = []
+        for i in tqdm(range(0, len(preprocessor.df), batch_size)):
+            batch_inputs = {key: val[i:i + batch_size] for key, val in tokenized_inputs.items()}
+            outputs = model(**batch_inputs)
+            last_hidden_states = outputs.last_hidden_state
+            embeddings.append(last_hidden_states)
+
+        # Concatenate embeddings for all batches
+        embeddings = tf.concat(embeddings, axis=0)
+        # Convert embeddings to numpy array
+        embeddings_np = embeddings.numpy()
+        # vectors will have shape (num_samples, hidden_size)
+        vectors = tf.reduce_mean(embeddings_np, axis=1)
+
+        # Save the generated embeddings to a npy file
+        np.save(self.npy_file_path, vectors, allow_pickle=False)
+        print(f"Embeddings saved to {self.npy_file_path}")
+
+
     # Generate sentence embeddings using Sentence Transformers
     def generate_embeddings(self):
         model = SentenceTransformer('all-MiniLM-L6-v2', device="cuda")
+        # model = SentenceTransformer("paraphrase-albert-small-v2", device = "cuda")
+
         preprocessor = DataFramePreprocessor(self.csv_file_path)
         preprocessor.preprocess_dataframe()
 
@@ -145,18 +190,23 @@ if __name__ == '__main__':
     # Parse command-line arguments
     parser = argparse.ArgumentParser(description="Process data, generate embeddings, and upload to Qdrant")
     parser.add_argument("--generate_embeddings", action="store_true", help="Generate embeddings and save to file")
-    parser.add_argument("--delete_collection", action="store_true", help="Generate embeddings and save to file")
+    parser.add_argument("--delete_collection", action="store_true", help="delete the current collection")
+    parser.add_argument("--generate_bert_embeddings", action="store_true", help="Generate bert embeddings and save to file")
     args = parser.parse_args()
     uploader = QdrantUploader(csv_file_path, npy_file_path)
     
-
     # Check if the --generate_embeddings flag is provided
     if args.generate_embeddings:
         uploader.generate_embeddings()
 
+    # Check if the --generate_embeddings flag is provided
+    if args.generate_bert_embeddings:
+        uploader.generate_bert_embeddings()
+
     # Check if the --generate_embeddings flag is provided    
     if args.delete_collection:
         uploader.delete_current_collections(collection_name,qdrant_url)
+
     # uploader.list_all_collections(qdrant_url)
 
     # upload the vectors saved in the npy file in the directory
