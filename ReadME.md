@@ -78,7 +78,9 @@ Finally, start our interactive frontend web app; run the following command in a 
 ```
 streamlit run app.py
 ```
--> The app will automatically start, in case, The Local URL and network URL are displayed in the terminal you can access it from the links as well.
+-> The app will automatically start, The Local URL and network URL are displayed in the terminal you can access it from the links as well.
+
+
 **Simply type in the query in the text box and press the search button.**
 
 
