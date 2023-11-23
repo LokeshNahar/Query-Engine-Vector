@@ -2,7 +2,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Filter, FieldCondition, Range
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
-
+from config import QDRANT_URL
 # class sentencetransformer searcher
 class LLMSearcher:
     def __init__(self, collection_name):
@@ -10,7 +10,7 @@ class LLMSearcher:
         # Initialize encoder model
         self.model = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
         # initialize Qdrant client
-        self.qdrant_client = QdrantClient("http://localhost:6333")
+        self.qdrant_client = QdrantClient(QDRANT_URL)
 
     # searching the text query
     def search(self, text: str):
