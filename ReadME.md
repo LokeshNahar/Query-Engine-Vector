@@ -48,7 +48,7 @@ docker run -p 6333:6333 \
 2.1 Run the following command (confirm Data Path in config.py file):
 ```
 #to generate the embeddings from the given dataset and then upload to the database (make sure your system has torch.cuda)
-python3 generate_upload.py --generate_embeddings
+python3 uploader.py --generate_embeddings
 ```
 Note: The Embeddings are being generated using the "all-MiniLM-L6-v2" model, however, if your machine's GPU resources permit, you may also use the "bert-base-uncased" model to generate the embeddings and store them in the .npy file, simply change the argument to "--generate_bert_embeddings".
 
