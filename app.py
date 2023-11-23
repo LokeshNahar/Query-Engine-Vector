@@ -29,12 +29,11 @@ class ProductSearchApp:
     def perform_search(self, search_query):
         # Make a request to the FastAPI backend
         response = requests.get(f"{self.backend_endpoint}/?q={search_query}")
-
+        st.balloons()
         with st.spinner('Wait for it...\nHappy Shopping $$$'):
             time.sleep(1)
         st.success('Done!')
-        st.balloons()
-        st.snow()
+        #st.snow()
 
         # Check if the request was successful
         if response.status_code == 200:
