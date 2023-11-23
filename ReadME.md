@@ -51,7 +51,7 @@ docker run -p 6333:6333 \
 ```
 python3 uploader.py --generate_embeddings
 ```
-Note: The Embeddings are being generated using the "all-MiniLM-L6-v2" model, however, if your machine's GPU resources permit, you may also use the "bert-base-uncased" model to generate the embeddings and store them in the .npy file, simply change the argument to "--generate_bert_embeddings", but make sure you install Tensorflow & transformers dependencies.
+Note: The Embeddings are being generated using the "all-MiniLM-L6-v2" model, however, if your machine's GPU resources permit, you may also use the "bert-base-uncased" model to generate the embeddings and store them in the .npy file, simply change the argument to "--generate_bert_embeddings", but make sure you install Tensorflow & transformers dependencies (included in requirements.txt).
 
 
 2.2 if the embeddings are already saved (bb_chaabi_vectors.npy) in a npy file, just upload them to the qdrant database
