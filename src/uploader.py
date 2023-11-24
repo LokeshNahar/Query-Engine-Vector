@@ -9,7 +9,7 @@ from sentence_transformers import SentenceTransformer
 import os,re
 import nltk,ssl
 from qdrant_client import QdrantClient, models
-from config import DATA_DIR,COLLECTION_NAME,QDRANT_URL,VECTOR_FIELD_NAME,TEXT_FIELD_NAME
+from config import DATA_DIR,COLLECTION_NAME,QDRANT_URL,VECTOR_FIELD_NAME,TEXT_FIELD_NAME,QDRANT_API_KEY
 
 # Set file paths and other configuration parameters
 csv_file_path = os.path.join(DATA_DIR, "bigBasketProducts.csv")
@@ -130,7 +130,7 @@ class QdrantUploader:
         print(f"Embeddings saved to {self.npy_file_path}")
 
     def upload_embeddings(self, collection_name, qdrant_url, vector_field_name, text_field_name):
-        client = QdrantClient(url=qdrant_url)
+        client = QdrantClient(url=qdrant_url, api_key=QDRANT_API_KEY)
         preprocessor = DataFramePreprocessor(self.csv_file_path)
         # preprocessor.preprocess_dataframe()
 
@@ -174,13 +174,16 @@ class QdrantUploader:
     # Delete the current Qdrant collection
     def delete_current_collections(self,collection_name,qdrant_url):
         client = QdrantClient(
-            url=qdrant_url
+            url=qdrant_url,
+            api_key=QDRANT_API_KEY
+
         )
         client.delete_collection(collection_name=collection_name)
 
     def list_all_collections(self,qdrant_url):
         client = QdrantClient(
-            url=qdrant_url
+            url=qdrant_url,
+            api_key=QDRANT_API_KEY
         )
         client.get_collections()
 
