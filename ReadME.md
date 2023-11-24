@@ -24,6 +24,8 @@ Dependencies:
 
 
 # #Start
+
+
 ## 1. Start the Qdrant service
  1.1 Download the latest Qdrant image from Dockerhub:
 
@@ -42,10 +44,15 @@ docker run -p 6333:6333 -v $(pwd)/qdrant_storage:/qdrant/storage:z qdrant/qdrant
 ->Qdrant is now accessible: 
   API: localhost:6333
 
-**for the next steps make sure your current directory is 'src' or navigate to it with the following command:**
+
+
+**For the next steps make sure your current directory is 'src' or navigate to it with the following command:**
 ```
 cd src
 ```
+
+***[UPDATE] Note: To use the Cloud Qdrant Database simply uncomment the variables Qdrant-URL and Qdrant-API-Key in config.py and proceed to step number 3***
+
 
 ## 2. Preprocess data, Generate the vector Embeddings and upload them to the Qdrant Database
 
