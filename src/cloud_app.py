@@ -5,9 +5,6 @@ import time
 from config import QDRANT_API_KEY,QDRANT_URL,COLLECTION_NAME
 from qdrant_client import QdrantClient
 from sentence_transformers import SentenceTransformer
-# Define the FastAPI backend endpoint
-
-
 
 class ProductSearchApp:
     def __init__(self):
