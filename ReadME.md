@@ -5,8 +5,6 @@
 **Qdrant + LLM + FastAPI + Streamlit**
 
 
-Dataset used is [Big-Basket-Products-Dataset](https://chaabiv2.s3.ap-south-1.amazonaws.com/hiring/bigBasketProducts.csv)
-
 # Requirements
 Make sure you are using Python 3.X in your environment.\
 Install the required dependencies using the following command:
@@ -88,6 +86,7 @@ streamlit run app.py
 
 **Simply type in the query in the text box and press the search button.**
 
+Dataset used is [Big-Basket-Products-Dataset](https://chaabiv2.s3.ap-south-1.amazonaws.com/hiring/bigBasketProducts.csv)
 
 Here are some Search results:
 * .
