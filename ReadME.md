@@ -35,9 +35,7 @@ docker pull qdrant/qdrant
  1.2 Run the qdrant service (make sure port 6333 is available):
 
 ```
-docker run -p 6333:6333 \
-    -v $(pwd)/qdrant_storage:/qdrant/storage:z \
-    qdrant/qdrant
+docker run -p 6333:6333 -v $(pwd)/qdrant_storage:/qdrant/storage:z qdrant/qdrant
 ```
 ->Under the default configuration, all data will be stored in the ./qdrant_storage directory.
 
