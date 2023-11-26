@@ -24,14 +24,18 @@ class ProductSearchApp:
 
         # Search button
         if st.button("Search"):
-            self.perform_search(search_query)
+            if not search_query:
+                st.warning("Please enter a query first!.")
+                return
+            else:
+                self.perform_search(search_query)
 
     def perform_search(self, search_query):
         # Make a request to the FastAPI backend
         response = requests.get(f"{self.backend_endpoint}/?q={search_query}")
         st.balloons()
         with st.spinner('Wait for it...\nHappy Shopping $$$'):
-            time.sleep(1)
+            time.sleep(0.5)
         st.success('Done!')
         #st.snow()
 
@@ -47,13 +51,13 @@ class ProductSearchApp:
         results = response.json()["result"]
         df = pd.DataFrame(results)
         
-        st.write("Search Results:           ....     ---slide-right--->")
+        st.success("Search Results: -    -    -   -  -  -  -  -  -  - - - - - ---slide-right--->")
         # display Dataframe
         st.dataframe(df.style.background_gradient(cmap="Purples", axis=0), 5000, 1000, hide_index=False, column_config={
             "rating": st.column_config.NumberColumn(
                 "Ratings",
                 help="Ratings of the product",
-                format="%d ⭐",
+                format="%f ⭐"
             )
         })
 
